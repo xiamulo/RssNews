@@ -78,11 +78,17 @@ WSGI_APPLICATION = 'RssNews.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sougou',
+        'USER': "root",
+        "PASSWORD": "a134275",
+        "HOST": "127.0.0.1",
+        "PORT": "3306"
     }
 }
+from mongoengine import connect
 
+connect("crawlab_test", host='127.0.0.1', port=27017)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -124,3 +130,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(os.path.join(BASE_DIR, 'static')),
 )
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'cache')
+    }
+}
