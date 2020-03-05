@@ -7,4 +7,6 @@ urlpatterns = [
     path('', views.index),
     path('login', views.login, name='login'),
     path('wxarticle', views.wxarticle, name='wxarticle'),
+    path('kaarticle', views.kaarticle, name='kaarticle'),
+    path('wbarticle', views.wbarticle, name='wbarticle'),
 ]

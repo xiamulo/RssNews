@@ -74,26 +74,20 @@
         </blockquote>
         <div class="blog-main">
             <div class="blog-main-left">
-
                 {% for wx in wxList %}
                     <div class="article shadow">
                         <div class="article-left">
-                            <img src="http:{{ wx.img_url }}" alt=" {{ wx.title }}"/>
+
                         </div>
-                        <div class="article-right">
-                            <div class="article-title">
-                                <a href="{{ wx.real_url }}" target="_blank" >{{ wx.title }}</a>
-                            </div>
-                            <div class="article-abstract">
-                                 <a href="{{ wx.real_url }}" target="_blank" >{{ wx.content }}</a>
-                            </div>
+                       <div class="article-right">
+                              <a href="{{ wx.detal_url }}" target="_blank" >{{ wx.content }}</a>
+
                         </div>
                         <div class="clear"></div>
                         <div class="article-footer">
-{#                            <span><i class="fa fa-clock-o"></i>{{wx.nowtime|dealwithtime}}</span>#}
-                            <span><i class="fa fa-clock-o"></i>{{wx.nowtime}}</span>
-                            <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;{{ wx.account_name }}</span>
-                            <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">{{ wx.keyword|dealwithkeyword }}</a></span>
+                            <span><i class="fa fa-clock-o"></i>{{wx.pubish_time}}</span>
+                            <span class="article-author"><i class="fa fa-user"></i>政法类</span>
+                            <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href={{ wx.user_url }}>{{ wx.name }}</a></span>
                             <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
                             <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
                         </div>
@@ -120,7 +114,7 @@
                 <div class="article-category shadow">
                     <div class="article-category-title">分类导航</div>
                     {% for label in labellist %}
-                        <a href="wxarticle?redis_Name={{label.redis_Name}}">{{ label.labelname}}</a>
+                        <a href="wbarticle?labelName={{ label.labelname }}">{{ label.labelname }}</a>
                     {% endfor %}
                     <div class="clear"></div>
                 </div>
@@ -208,7 +202,6 @@
 <!-- 全局脚本 -->
 <script src="{% static "js/global.js" %}"></script>
 <script>
-
     layui.use('laypage', function () {
         var laypage = layui.laypage;
         laypage.render({
@@ -222,7 +215,7 @@
                 console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
                 console.log(obj.limit); //得到每页显示的条数
                 if (!first) {
-                    location.href = "wxarticle" + "?redis_Name={{redis_Name}}&current=" + obj.curr + "&begin=" + obj.curr + "&end=" + obj.limit;
+                    location.href = "wbarticle" + "?labelName={{ labelName }}&current=" + obj.curr + "&begin=" + obj.curr + "&end=" + obj.limit;
                 }
 
             }
